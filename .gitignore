@@ -5,6 +5,9 @@ qemu_old/
 *.qcow2
 *.old
 *.efi
+*.elf
 *.fd
 *.raw
 *.img
+kernel
+initrd

@@ -142,6 +142,6 @@ sudo systemctl poweroff
 
         ./utilities/compress_disk_image.sh
 
-2. Remove the old disk image.
+2. Remove the old uncompressed disk image.
 
         ./utilities/remove_old_files.sh

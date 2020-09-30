@@ -1,7 +1,7 @@
 ### COM 341, Operating Systems
-# Practice Task #1, Debian for RISC-V 64-bit CPUs
+# Project #1, Part #1, Debian for RISC-V 64-bit CPUs
 
-### Installing Debian
+## Installing Debian
 
 Follow the steps to install the 64-bit RISC-V Debian Linux in QEMU.
 
@@ -28,11 +28,11 @@ Follow the steps to install the 64-bit RISC-V Debian Linux in QEMU.
 4. Download the Debian disk image. RISC-V CPU architecture is less populare
    compared to x86 and Arm. That is why we will use prebuilt images from
    <https://people.debian.org/~gio/dqib> created weekly by
-   [Giovanni Mascellani](https://wiki.debian.org/GiovanniMascellani). 
+   [Giovanni Mascellani](https://wiki.debian.org/GiovanniMascellani).
 
         ./utilities/download_debian.sh
 
-### Starting and Stopping the System
+## Starting and Stopping the System
 
 If the system is not running, you can start the QEMU emulator and Debian with
 the following command
@@ -41,7 +41,9 @@ the following command
 ./start.sh
 ```
 
-On Windows, switch to the serial console by pressing `CTRL+ALT+2` in QEMU.
+On Windows, switch to the serial console by pressing `CTRL+ALT+2` in QEMU. You
+can login as a privileged user by using the login `root` with the password
+`root`.
 
 If you can not start the emulator on Windows, ensure the path to the QEMU
 executable is in the $PATH environment variable.
@@ -61,24 +63,23 @@ To shutdown the system and exit from QEMU
 systemctl poweroff
 ```
 
-You can login as a privileged user by using the login `root` with the password `root`.
-
-### Installing Additional Software
+## Installing Additional Software
 
 1. Start the system and log in.
 
 2. Install the GNU C compiler, the GNU Make build system, the GNU Debugger, and
-   the Git version control system with the program to search and open documentation.
+   the Git version control system with the program to search and open
+   documentation.
 
         apt-get update
         apt-get install gcc make gdb git man
 
-### Cleanup [Optional]
+## Cleanup [Optional]
 
 1. Compress the hard drive image file.
 
         ./utilities/compress_disk_image.sh
 
-2. Remove the old disk image.
+2. Remove the old uncompressed disk image.
 
         ./utilities/remove_old_files.sh

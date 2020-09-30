@@ -1,8 +1,11 @@
 #!/usr/bin/env sh
 
-export PATH=$PATH:`cd ../../qemu; pwd`
+export PATH=$PATH:`cd ../../qemu > /dev/null 2>&1; pwd`
 
 DISPLAY=`[ "$OSTYPE" == "msys" ] && echo "-display gtk" || echo "-nographic"`
+case $OSTYPE in darwin*)
+    DISPLAY="-display cocoa"
+esac
 
 qemu-system-x86_64                                                  \
     -machine type=pc,accel=tcg                                      \
