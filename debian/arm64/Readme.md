@@ -41,13 +41,12 @@ Follow the steps to install the 64-bit ARM Debian Linux in QEMU.
 
         ./start_installation.sh
 
-8. On Windows, switch to the serial console by pressing `CTRL+ALT+2`
-   in QEMU. Select the `Install` option in the bootloader.
-   Use `Arrow`-keys or `Backspace` to select items on the screen.
-   Follow the steps below to install the system. Note that it is
-   recommended to close QEMU after the first successful reboot
-   during the installation process and boot Debian for the first
-   time with the `./start.sh` script.
+8. On Windows, switch to the serial console by pressing `CTRL+ALT+2` in QEMU.
+   Select the `Install` option in the bootloader.  Use `Arrow`-keys or
+   `Backspace` to select items on the screen.  Follow the steps below to install
+   the system. Note that it is recommended to close QEMU after the first
+   successful reboot during the installation process and boot Debian for the
+   first time with the `./start.sh` script.
 
 ![Step 2](https://i.imgur.com/af2IHTm.png)
 ![Step 3](https://i.imgur.com/9AQLpZJ.png)
@@ -111,7 +110,8 @@ sudo systemctl poweroff
 1. Start the system and log in.
 
 2. Install the GNU C compiler, the GNU Make build system, the GNU Debugger, and
-   the Git version control system with the program to search and open documentation.
+   the Git version control system with the program to search and open
+   documentation.
 
         sudo apt-get update
         sudo apt-get install gcc make gdb git

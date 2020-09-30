@@ -41,12 +41,11 @@ Follow the steps to install the 64-bit AMD64 Debian Linux in QEMU.
 
         ./start_installation.sh
 
-8. Select the `Install` option, NOT the `Graphical Install` option
-   in the bootloader. Use `Arrow`-keys or `Backspace` to select items
-   on the screen. Follow the steps below to install the system. Note
-   that it is recommended to close QEMU after the first successful
-   reboot during the installation process and boot Debian for the first
-   time with the `./start.sh` script.
+8. Select the `Install` option, NOT the `Graphical Install` option in the
+   bootloader. Use `Arrow`-keys or `Backspace` to select items on the screen.
+   Follow the steps below to install the system. Note that it is recommended to
+   close QEMU after the first successful reboot during the installation process
+   and boot Debian for the first time with the `./start.sh` script.
 
 ![Step 1](https://i.imgur.com/aCVKtgC.png)
 ![Step 2](https://i.imgur.com/af2IHTm.png)
@@ -111,7 +110,8 @@ sudo systemctl poweroff
 1. Start the system and log in.
 
 2. Install the GNU C compiler, the GNU Make build system, the GNU Debugger, and
-   the Git version control system with the program to search and open documentation.
+   the Git version control system with the program to search and open
+   documentation.
 
         sudo apt-get update
         sudo apt-get install gcc make gdb git
