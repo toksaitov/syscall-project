@@ -78,8 +78,6 @@ Follow the steps to install the 64-bit ARM Debian Linux in QEMU.
 ![Step 28](https://i.imgur.com/HWln12R.png)
 ![Step 29](https://i.imgur.com/20pPYuM.png)
 ![Step 30](https://i.imgur.com/ga4plYb.png)
-![Step 31](https://i.imgur.com/TKp2HWR.png)
-![Step 32](https://i.imgur.com/c4anePH.png)
 
 ## Starting and Stopping the System
 
