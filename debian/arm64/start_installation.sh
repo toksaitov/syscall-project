@@ -2,9 +2,9 @@
 
 export PATH=$PATH:`cd ../../qemu > /dev/null 2>&1; pwd`
 
-DISPLAY="-display gtk"
+DISP="-display gtk"
 case $OSTYPE in darwin*)
-    DISPLAY="-display cocoa"
+    DISP="-display cocoa"
 esac
 
 qemu-system-aarch64                                                                               \
@@ -12,7 +12,7 @@ qemu-system-aarch64                                                             
     -cpu cortex-a57                                                                               \
     -m 1024M                                                                                      \
     -smp 1                                                                                        \
-    $DISPLAY                                                                                      \
+    $DISP                                                                                         \
     -drive if=pflash,file=QEMU_EFI-pflash.raw,format=raw                                          \
     -drive if=pflash,file=vars-template-pflash.raw,format=raw                                     \
     -drive if=virtio,file=debian-10.6.0-arm64-hd.qcow2                                            \

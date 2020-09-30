@@ -2,9 +2,9 @@
 
 export PATH=$PATH:`cd ../../qemu > /dev/null 2>&1; pwd`
 
-DISPLAY="-display gtk"
+DISP="-display gtk"
 case $OSTYPE in darwin*)
-    DISPLAY="-display cocoa"
+    DISP="-display cocoa"
 esac
 
 qemu-system-mips64el                            \
@@ -12,7 +12,7 @@ qemu-system-mips64el                            \
     -cpu 5KEc                                   \
     -m 1024M                                    \
     -smp 1                                      \
-    $DISPLAY                                    \
+    $DISP                                       \
     -drive file=debian-10.5.0-mips64el-hd.qcow2 \
     -device e1000,netdev=net                    \
     -netdev user,id=net,hostfwd=tcp::2223-:22   \

@@ -2,9 +2,9 @@
 
 export PATH=$PATH:`cd ../../qemu > /dev/null 2>&1; pwd`
 
-DISPLAY="-display gtk"
+DISP="-display gtk"
 case $OSTYPE in darwin*)
-    DISPLAY="-display cocoa"
+    DISP="-display cocoa"
 esac
 
 qemu-system-riscv64                                          \
@@ -12,7 +12,7 @@ qemu-system-riscv64                                          \
     -cpu rv64                                                \
     -m 1024M                                                 \
     -smp 1                                                   \
-    $DISPLAY                                                 \
+    $DISP                                                    \
     -bios fw_jump.elf                                        \
     -kernel uboot.elf                                        \
     -device virtio-blk-device,drive=hd                       \
