@@ -47,7 +47,7 @@ the project.
    installation process will give you the wrong files to submit and zero points for the part 
    as a result. Please, provide the correct full name, login, and password.
 
-2. In your private course repository that was given to use by the instructor during the
+2. In your private course repository that was given to you by the instructor during the
    lecture, create the path `project-1/part-1/`.
 
 3. Put the `/etc/shadow` file from each operating system into the directory under the
