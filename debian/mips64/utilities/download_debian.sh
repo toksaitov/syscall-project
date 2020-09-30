@@ -7,7 +7,7 @@ RAM_DISK='initrd'
 
 URL="https://www.dropbox.com/s/8ndw5ob8a5a56m1/$OS_ARCHIVE?dl=1/"
 
-curl --location -C - --output "$OS_ARCHIVE" "$URL" || wget --continue --output-file="$OS_ARCHIVE" "$URL"
+curl --location -C - --output "$OS_ARCHIVE" "$URL"
 
 test -e "$DISK_IMAGE" && mv "$DISK_IMAGE" "$DISK_IMAGE".old
 test -e "$KERNEL" && mv "$KERNEL" "$KERNEL".old

@@ -2,7 +2,7 @@
 
 export PATH=$PATH:`cd ../../qemu > /dev/null 2>&1; pwd`
 
-DISPLAY=`[ "$OSTYPE" == "msys" ] && echo "-display gtk" || echo "-nographic"`
+DISPLAY="-display gtk"
 case $OSTYPE in darwin*)
     DISPLAY="-display cocoa"
 esac

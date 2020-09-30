@@ -19,7 +19,7 @@ Follow the steps to install the 64-bit MIPS Debian Linux in QEMU.
         brew install qemu
 
         # On Ubuntu Linux
-        sudo apt install qemu-system-mips64el
+        sudo apt install curl qemu-system
 
 3. Move into the directory `./debian/arm64`.
 

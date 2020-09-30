@@ -19,7 +19,7 @@ Follow the steps to install the 64-bit RISC-V Debian Linux in QEMU.
         brew install qemu
 
         # On Ubuntu Linux
-        sudo apt install qemu-system-riscv64
+        sudo apt install curl qemu-system
 
 3. Move into the directory `./debian/arm64`.
 

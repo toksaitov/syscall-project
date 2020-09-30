@@ -9,7 +9,7 @@ BOOTLOADER='uboot.elf'
 
 URL="https://www.dropbox.com/s/7n3t9a1fcm0bqkm/$OS_ARCHIVE?dl=1/"
 
-curl --location -C - --output "$OS_ARCHIVE" "$URL" || wget --continue --output-file="$OS_ARCHIVE" "$URL"
+curl --location -C - --output "$OS_ARCHIVE" "$URL"
 
 test -e "$DISK_IMAGE" && mv "$DISK_IMAGE" "$DISK_IMAGE".old
 test -e "$KERNEL" && mv "$KERNEL" "$KERNEL".old
