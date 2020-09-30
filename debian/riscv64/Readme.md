@@ -5,9 +5,9 @@
 
 Follow the steps to install the 64-bit RISC-V Debian Linux in QEMU.
 
-1. Move into the project directory `./Practice 1/`.
+1. Move into the project directory `./syscall-project/`.
 
-        cd 'Practice 1/'
+        cd 'syscall-project/'
 
 2. Download the hardware emulator QEMU for your operating system.
 
