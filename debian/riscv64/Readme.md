@@ -14,13 +14,9 @@ Follow the steps to install the 64-bit RISC-V Debian Linux in QEMU.
         # On Windows (from the Bash shell bundled with Git)
         ./utilities/download_qemu_win64.sh # or download_qemu_win32.sh on a
                                            # 32-bit Windows
-        export PATH=$PATH:`cd qemu; pwd`
 
         # On macOS with [Homebrew](http://brew.sh)
         brew install qemu
-
-        # On macOS with [The MacPorts Project](https://www.macports.org)
-        sudo port install qemu
 
         # On Ubuntu Linux
         sudo apt install qemu-system-riscv64
