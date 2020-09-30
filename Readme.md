@@ -1,5 +1,5 @@
 ### COM 341, Operating Systems
-# Practice #1
+# Project #1
 
 ![ish](http://i.imgur.com/hUwm2PG.gif)
 
