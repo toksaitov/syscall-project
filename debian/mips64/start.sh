@@ -15,6 +15,6 @@ qemu-system-mips64el                            \
     $DISP                                       \
     -drive file=debian-10.5.0-mips64el-hd.qcow2 \
     -device e1000,netdev=net                    \
-    -netdev user,id=net,hostfwd=tcp::2223-:22   \
+    -netdev user,id=net,hostfwd=tcp::2222-:22   \
     -kernel kernel -initrd initrd               \
     -append "root=LABEL=rootfs console=ttyS0"
