@@ -48,35 +48,33 @@ Follow the steps to install the 64-bit ARM Debian Linux in QEMU.
    successful reboot during the installation process and boot Debian for the
    first time with the `./start.sh` script.
 
-![Step 2](https://i.imgur.com/af2IHTm.png)
-![Step 3](https://i.imgur.com/9AQLpZJ.png)
-![Step 4](https://i.imgur.com/k0I1h3D.png)
-![Step 5](https://i.imgur.com/RsMvtdk.png)
-![Step 6](https://i.imgur.com/KCB1Vic.png)
-![Step 7](https://i.imgur.com/cW1uqmo.png)
-![Step 8](https://i.imgur.com/GzUNVfg.png)
-![Step 9](https://i.imgur.com/47iyANd.png)
-![Step 10](https://i.imgur.com/N8EE3D6.png)
-![Step 11](https://i.imgur.com/ZDuLnoP.png)
-![Step 12](https://i.imgur.com/e1Nv4NT.png)
-![Step 13](https://i.imgur.com/HBgpJfI.png)
-![Step 14](https://i.imgur.com/oADd9l9.png)
-![Step 15](https://i.imgur.com/lbRqBqc.png)
-![Step 16](https://i.imgur.com/egAlQsF.png)
-![Step 17](https://i.imgur.com/ySBKlfj.png)
-![Step 18](https://i.imgur.com/e2c1q7V.png)
-![Step 19](https://i.imgur.com/Fcwz3jT.png)
-![Step 20](https://i.imgur.com/3qPMKnL.png)
-![Step 21](https://i.imgur.com/PZfHKxX.png)
-![Step 22](https://i.imgur.com/X3aLYVu.png)
-![Step 23](https://i.imgur.com/S4N8m7y.png)
-![Step 24](https://i.imgur.com/G1jYhym.png)
-![Step 25](https://i.imgur.com/lMWbdOi.png)
-![Step 26](https://i.imgur.com/go0TyqM.png)
-![Step 27](https://i.imgur.com/1GEmLHk.png)
-![Step 28](https://i.imgur.com/HWln12R.png)
-![Step 29](https://i.imgur.com/20pPYuM.png)
-![Step 30](https://i.imgur.com/ga4plYb.png)
+![Step 1](https://i.imgur.com/StvLIoc.png)
+![Step 2](https://i.imgur.com/kqbbdoC.png)
+![Step 3](https://i.imgur.com/kLAZai3.png)
+![Step 4](https://i.imgur.com/AnPBFQ9.png)
+![Step 5](https://i.imgur.com/upEtoa6.png)
+![Step 6](https://i.imgur.com/2alzMWR.png)
+![Step 7](https://i.imgur.com/ZshrQGg.png)
+![Step 8](https://i.imgur.com/gykJ8ih.png)
+![Step 9](https://i.imgur.com/EyBWGFV.png)
+![Step 10](https://i.imgur.com/LBnMvIe.png)
+![Step 11](https://i.imgur.com/Hykmojn.png)
+![Step 12](https://i.imgur.com/5oaY3ME.png)
+![Step 13](https://i.imgur.com/UCL8JwT.png)
+![Step 14](https://i.imgur.com/WwAa4qX.png)
+![Step 15](https://i.imgur.com/EoBDxLl.png)
+![Step 16](https://i.imgur.com/UzltsBc.png)
+![Step 17](https://i.imgur.com/JwVjw8Z.png)
+![Step 18](https://i.imgur.com/oJAFv9U.png)
+![Step 19](https://i.imgur.com/nuG1fFe.png)
+![Step 20](https://i.imgur.com/e7QoSdK.png)
+![Step 21](https://i.imgur.com/TJ6fiYI.png)
+![Step 22](https://i.imgur.com/0MABUKh.png)
+![Step 23](https://i.imgur.com/vxEvNE5.png)
+![Step 24](https://i.imgur.com/eAsF7cf.png)
+![Step 25](https://i.imgur.com/GluKM7U.png)
+![Step 26](https://i.imgur.com/ljM6u9X.png)
+![Step 27](https://i.imgur.com/sldiY11.png)
 
 ## Starting and Stopping the System
 
@@ -110,8 +108,7 @@ sudo systemctl poweroff
 1. Start the system and log in.
 
 2. Install the GNU C compiler, the GNU Make build system, the GNU Debugger, and
-   the Git version control system with the program to search and open
-   documentation.
+   the Git version control system.
 
         sudo apt-get update
         sudo apt-get install gcc make gdb git
