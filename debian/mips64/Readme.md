@@ -45,6 +45,8 @@ On Windows, switch to the serial console by pressing `CTRL+ALT+3` in QEMU. You
 can login as a privileged user by using the login `root` with the password
 `root`.
 
+![Qemu](https://i.imgur.com/cmAbobQ.png)
+
 If you can not start the emulator on Windows, ensure the path to the QEMU
 executable is in the $PATH environment variable.
 
