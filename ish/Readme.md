@@ -163,19 +163,7 @@ Note, that you will have to repeat the process below for every CPU architecture.
 
 * [Linux x86-64 System Call Tables](https://github.com/torvalds/linux/tree/master/arch/x86/entry/syscalls/syscall_64.tbl)
 
-* [Linux x86 System Call Tables](https://github.com/torvalds/linux/tree/master/arch/x86/entry/syscalls/syscall_32.tbl)
-
-* [Bionic Standard C Library, Linux ARMv7-A System Call Table](https://github.com/aosp-mirror/platform_bionic/blob/master/libc/kernel/uapi/asm-arm/asm/unistd-common.h)
-
 * [Bionic Standard C Library, Linux ARMv8-A System Call Table](https://github.com/android/platform_bionic/blob/master/libc/kernel/uapi/asm-generic/unistd.h)
-
-* [Bionic Standard C Library, x86-64 System Calls](https://github.com/android/platform_bionic/tree/master/libc/arch-x86_64/syscalls)
-
-* [Bionic Standard C Library, x86 System Calls](https://github.com/android/platform_bionic/tree/master/libc/arch-x86/syscalls)
-
-* [Bionic Standard C Library, ARMv7-A System Calls](https://github.com/android/platform_bionic/tree/master/libc/arch-arm/syscalls)
-
-* [Bionic Standard C Library, ARMv8-A System Calls](https://github.com/android/platform_bionic/tree/master/libc/arch-arm64/syscalls)
 
 System call numbers for MIPS and RISC-V you will have to find on your own.
 
@@ -191,7 +179,7 @@ System call numbers for MIPS and RISC-V you will have to find on your own.
 
 ### Reading
 
-* [C Books and Guides](https://github.com/auca/com.341/blob/master/Labs.md#links)
+* [C Books and Guides](https://github.com/auca/com.341/blob/master/Labs/Labs.md#links)
 
 * _Understanding the Linux kernel, Third Edition by Daniel P. Bovet and Marco Cesati, Chapters 4, 10_
 
