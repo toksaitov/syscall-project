@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-DISK_IMAGE='debian-10.6.0-arm64-hd.qcow2'
+DISK_IMAGE='debian-11.0.0-arm64-hd.qcow2'
 EFI_FIRMWARE='QEMU_EFI-pflash.raw'
 EFI_VARS='vars-template-pflash.raw'
 
