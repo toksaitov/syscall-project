@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 
-QEMU_ARCHIVE='qemu-5.1.0-win64.tar.gz'
+QEMU_ARCHIVE='qemu-6.1.0-win64.tar.gz'
 QEMU_DIRECTORY='qemu'
-URL="https://www.dropbox.com/s/gxbkr6xutpry7oh/$QEMU_ARCHIVE?dl=1/"
+URL="https://www.dropbox.com/s/nhzjng9xccj4drh/$QEMU_ARCHIVE?dl=1/"
 
 curl --location -C - --output "$QEMU_ARCHIVE" "$URL"
 

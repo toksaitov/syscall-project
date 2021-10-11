@@ -23,15 +23,15 @@ macOS and Ubuntu Linux have Bash and basic Unix programs installed by default.
 ## Part #1
 
 The goal of the first task is to prepare execution environments for the second
-part of the project.
+and third parts of the project.
 
 * First, you need to set an execution environment on your personal computer
   (with an x86 or x86-64 CPU architecture) for specific CPU architectures such
-  as `amd64`, `aarch64`, `mips64el`, and `riscv64`. To emulate the ARMv8, MIPS64
-  LE, and RISC-V 64 CPUs, we will use the QEMU hardware emulator. Through QEMU,
-  we will install and use the Debian Linux operating system. Refer to the Readme
-  files in directories `debian/amd64/`, `debian/arm64/` , `debian/mips64/`, and
-  `debian/riscv64/` for specific details on what to do to set up the \ systems.
+  as `amd64` and `aarch64`. To virtualize or emulate the x86-64 and ARMv8
+  CPUs, we will use the QEMU hardware emulator. Through QEMU, we will install
+  and use the Debian Linux operating system. Refer to the Readme files in
+  directories `debian/amd64/` and `debian/arm64/` for specific details on what
+  to do to set up the systems.
 
 ### What to Submit
 
@@ -50,44 +50,41 @@ part of the project.
 
 3. Put the `/etc/shadow` file from each operating system into the directory
    under the name `<arch>-shadow` in the course repository. You should get the
-   following four files
+   following two files
 
     * `amd64-shadow`
     * `arm64-shadow`
-    * `mips64-shadow`
-    * `riscv64-shadow`
 
 4. Put the output of `dmesg` from each operating system into the directory under
-   the name `<arch>-dmesg` in the course repository. You should get and submit the
-   following additional four files
+   the name `<arch>-dmesg` in the course repository. You should get and submit
+   the following additional two files
 
     * `amd64-dmesg`
     * `arm64-dmesg`
-    * `mips64-dmesg`
-    * `riscv64-dmesg`
 
-5. Commit and push your repository through Git. Submit the last commit ID to Canvas
-   before the deadline.
+5. Commit and push your repository through Git. Submit the last commit ID to
+   Canvas before the deadline.
 
 ## Part #2
 
-The goal of the second task is to implement system calls on all the four
+The goal of the second task is to implement system calls on all the two
 platforms from part 1 in sources of a toy shell. Refer to the Readme file in the
 `ish` directory for more info.
+
+## Part #3
+
+TBD
 
 ### What to Submit
 
 1. In your private course repository that was given to you by the instructor
    during the lecture, create the path `project-1/part-2/`.
 
-3. Put the `ish_syscalls.amd64.c`, `ish_syscalls.aarch64.c`,
-   `ish_syscalls.mips64el.c`, and `ish_syscalls.riscv64.c`into the course
+3. Put the `ish_syscalls.amd64.c` and `ish_syscalls.aarch64.c` into the course
    repository.
 
 5. Commit and push your repository through Git. Submit the last commit ID to
-   Canvas before the deadline. You may get two deadlines. In that case, you
-   should submit `ish_syscalls.amd64.c`, `ish_syscalls.aarch64.c` first, then
-   the other two files as a separate submission.
+   Canvas before the deadline.
 
 ### Deadline
 

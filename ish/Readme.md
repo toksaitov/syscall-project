@@ -19,9 +19,8 @@ Note, that you will have to repeat the process below for every CPU architecture.
 4. Copy the `ish` directory from your machine to the emulated system with `scp`
    or git.
 
-5. Log in into the Debian system through SSH. For MIPS and RISC-V Debian
-   versions the login should be root. In other cases it should be the login
-   that you have specified during the installation process.
+5. Log in into the Debian system through SSH. Use the login that you have
+   specified during the installation process.
 
         ssh -p 2222 <login>@127.0.0.1
 
@@ -99,15 +98,66 @@ Note, that you will have to repeat the process below for every CPU architecture.
    registers to perform the operation. For example, you may have to replace
    `stat` with `fstatat` or `open` with `openat`. In order to find which calls
    to use, you can write a small C program to perform the call from C and then
-   analyze the assembly generate by the compiler. GNU Debugger could be usfull
+   analyze the assembly generate by the compiler. GNU Debugger could be usefull
    in that particular case.
+
+```c
+#include <fcntl.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <unistd.h>
+
+#define BUFFER_SIZE 128
+static char buffer[BUFFER_SIZE];
+
+int main(int argc, char **argv[])
+{
+    /* All the ISH system calls in one place to disassemble them */
+
+    int int_res __attribute__((used));
+    ssize_t long_res __attribute__((used));
+
+    long_res = read(0, buffer, BUFFER_SIZE);
+
+    int_res = chdir("/tmp");
+
+    struct stat statbuf;
+    int_res = stat("/bin/true", &statbuf);
+
+    int fd_open = open("/bin/false", 00000);
+
+    int fd_creat = creat("/tmp/test.txt", 00644);
+
+    int_res = dup2(fd_creat, 1);
+
+    int_res = close(fd_open); int_res = close(fd_creat);
+
+    pid_t pid;
+    if ((pid = fork()) > 0) {
+        int status;
+        pid = waitpid(pid, &status, 0);
+    } else {
+        int_res = execve("/bin/ls", NULL, NULL);
+
+        exit(42);
+    }
+
+    long_res = write(1, buffer, strnlen(buffer, BUFFER_SIZE));
+
+    exit(43);
+
+    return 0;
+}
+```
 
 ### Managing Sources and Executables
 
 * Edit the code. Add implementation for every system call in files
-  `ish_syscall.<arch>.c`. Change related system call names in `ish.c`
-  to the newly implemented function names (e.g., change `read`
-  to `ish_read`).
+  `ish_syscall.<arch>.c`. Change related system call names in `ish.c` to the
+  newly implemented function names (e.g., change `read` to `ish_read`).
 
         vim ish_syscalls.<arch>.c
         vim ish.c
@@ -165,8 +215,6 @@ Note, that you will have to repeat the process below for every CPU architecture.
 
 * [Bionic Standard C Library, Linux ARMv8-A System Call Table](https://github.com/android/platform_bionic/blob/master/libc/kernel/uapi/asm-generic/unistd.h)
 
-System call numbers for MIPS and RISC-V you will have to find on your own.
-
 ### Documentation
 
     man 2 syscall
@@ -184,4 +232,3 @@ System call numbers for MIPS and RISC-V you will have to find on your own.
 * _Understanding the Linux kernel, Third Edition by Daniel P. Bovet and Marco Cesati, Chapters 4, 10_
 
 * _Linux Kernel Development, Third Edition by Robert Love, Chapters 5, 7_
-

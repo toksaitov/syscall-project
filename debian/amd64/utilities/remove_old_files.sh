@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-DISK_IMAGE='debian-11.0.0-amd64-hd.qcow2'
+DISK_IMAGE='debian-11.1.0-amd64-hd.qcow2'
 EFI_FIRMWARE='OVMF_CODE-pure-efi.fd'
 EFI_VARS='OVMF_VARS-pure-efi.fd'
 
