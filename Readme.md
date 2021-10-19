@@ -71,10 +71,6 @@ The goal of the second task is to implement system calls on all the two
 platforms from part 1 in sources of a toy shell. Refer to the Readme file in the
 `ish` directory for more info.
 
-## Part #3
-
-TBD
-
 ### What to Submit
 
 1. In your private course repository that was given to you by the instructor
@@ -85,6 +81,10 @@ TBD
 
 5. Commit and push your repository through Git. Submit the last commit ID to
    Canvas before the deadline.
+
+## Part #3
+
+TBD
 
 ### Deadline
 
