@@ -31,29 +31,11 @@
 
         https://github.com/torvalds/linux/tree/master/arch/x86/entry/syscalls
 
-    For extra points you can implement calls for other CPU architectures. You
-    need to research kernel and function calling conventions on your own.
-
-    Linux x86 System Call Tables
-
-        `syscall_32.tbl`
-
-        https://github.com/torvalds/linux/tree/master/arch/x86/entry/syscalls
-
-    Linux ARMv7-A System Call Tables from Android Bionic libc
-
-        `unistd-common.h`
-
-        https://github.com/android/platform_bionic/blob/master/libc/kernel/uapi/asm-arm/asm
-
     Linux ARMv8-A System Call Tables from Android Bionic libc
 
         `unistd.h`
 
         https://github.com/android/platform_bionic/blob/master/libc/kernel/uapi/asm-generic
-
-    You will have to find the system call numbers for MIPS and RISC-V CPU
-    architectures on your own.
 */
 
 #ifndef ISH_USE_STDLIB
