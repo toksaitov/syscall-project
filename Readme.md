@@ -84,7 +84,18 @@ platforms from part 1 in sources of a toy shell. Refer to the Readme file in the
 
 ## Part #3
 
-TBD
+The goal of the third task is to add piping support to our toy shell. Refer to
+the Readme file in the `ish2` directory for more info.
+
+### What to Submit
+
+1. In your private course repository that was given to you by the instructor
+   during the lecture, create the path `project-1/part-3/`.
+
+3. Put the `ish.c` file into that directory.
+
+5. Commit and push your repository through Git. Submit the last commit ID to
+   Canvas before the deadline.
 
 ### Deadline
 

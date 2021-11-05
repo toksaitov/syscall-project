@@ -101,8 +101,8 @@
    // registers. The input variable's register can be specified after the
    // variable's declaration wrapped in quotes and parentheses.
    //
-   //     register long result ("r7"); // 32-bit ARM
-   //     register long result ("x0"); // 64-bit ARM
+   //     register long result asm("r7"); // 32-bit ARM
+   //     register long result asm("x0"); // 64-bit ARM
    //
    // All registers used as input or output arguments should not be
    // listed as clobbered.

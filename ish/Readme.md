@@ -24,7 +24,7 @@ Note, that you will have to repeat the process below for every CPU architecture.
 
         ssh -p 2222 <login>@127.0.0.1
 
-7. Go into the directory `ish`.
+6. Go into the directory `ish`.
 
    In this task, you need to perform a number of system calls to the Linux
    kernel without the help of any standard libraries.
