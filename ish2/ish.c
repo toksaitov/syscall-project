@@ -93,7 +93,11 @@ int main(int argc, char **argv, char **envp)
                     command,
                     Builtin_Command_CD
                 )) {
-                // TODO: if we are not in a pipe, bail (goto) out to `next_input`.
+                // TODO: If we are in a pipe (check `is_pipe`), bail out (goto)
+                //       to the `next_input` label to ignore the incorrect
+                //       command. The `cd` command does not make much sense in
+                //       our shell in a pipe sequence.
+                // ?
 
                 char *directory = argument_count == 0 ?  home : arguments[1];
                 if (directory) {
@@ -107,7 +111,11 @@ int main(int argc, char **argv, char **envp)
                     command,
                     Builtin_Command_Exit
                 )) {
-                // TODO: if we are not in a pipe, bail out (goto) to `next_input`.
+                // TODO: If we are in a pipe (check `is_pipe`), bail out (goto)
+                //       to the `next_input` label to ignore the incorrect
+                //       command. The `exit` command does not make much sense in
+                //       our shell in a pipe sequence.
+                // ?
 
                 int exit_status =
                     argument_count == 0 ?
@@ -166,8 +174,14 @@ int main(int argc, char **argv, char **envp)
                 ish_extract_last_stdin_redirection_file(
                     arguments
                 );
-            // TODO: if `stdin_file` is present and we are in a pipe and we
-            //       are not the first member of pipe, bail out to `next_input`.
+            // TODO: If `stdin_file` is present and we are in a pipe (check
+            //       `is_pipe`) and we are not the first pipe member (check
+            //       `pipe_member_index`), go to the `next_input` label to
+            //       ignore the incorrect command. The only program in a pipe
+            //       that can use STDIN redirection from a file should be the
+            //       first program in a pipeline.
+            // ?
+
             int stdin_descriptor =
                 !stdin_file ?
                     -1 : open(
@@ -179,8 +193,14 @@ int main(int argc, char **argv, char **envp)
                 ish_extract_last_stdout_redirection_file(
                     arguments
                 );
-            // TODO: if `stdout_file` is present and we are in a pipe and we
-            //       are not the last member of pipe, bail out to `next_input`.
+            // TODO: If `stdout_file` is present and we are in a pipe (check
+            //       `is_pipe`) and we are not the last pipe member (check
+            //       `pipe_member_index` and `pipe_member_count`), go to the
+            //       `next_input` label to ignore the incorrect command. The
+            //       only program in a pipe that can use STDOUT redirection to
+            //       a file should be the last program in a pipeline.
+            // ?
+
             int stdout_descriptor =
                 !stdout_file ?
                     -1 : creat(
@@ -191,14 +211,23 @@ int main(int argc, char **argv, char **envp)
             if (is_pipe) {
                 if (pipe_member_index != pipe_member_count - 1) {
                     int pipe_descriptors[2];
-                    // TODO: create the pipe file descriptors.
+                    // TODO: Create the pipe with the `pipe` system call. Such a
+                    //       call should create two file descriptors in
+                    //       `pipe_descriptors` where `pipe_descriptors[0]` is
+                    //       the STDIN end of the new pipe for the consumer
+                    //       process (the second process) and `pipe_descriptors[1]`
+                    //       is the STDOUT end of the producer process (the
+                    //       first process).
+                    // ?
 
-                    pipe_stdin_descriptors[pipe_member_index] = pipe_descriptors[0];
-                    pipe_stdout_descriptors[pipe_member_index] = pipe_descriptors[1];
+                    pipe_stdin_descriptors[pipe_member_index] =
+                        pipe_descriptors[0];
+                    pipe_stdout_descriptors[pipe_member_index] =
+                        pipe_descriptors[1];
                 }
             }
 
-            int pid = fork(); // ~ typedef int pid_t
+            int pid = fork();
             if (pid == 0) {
                 if (stdin_descriptor > 0) {
                     dup2(stdin_descriptor, 0);
@@ -212,13 +241,47 @@ int main(int argc, char **argv, char **envp)
 
                 if (is_pipe) {
                     if (pipe_member_index != 0) {
-                        // TODO: dup2 pipe stdin end of the previous iteration to child's stdin.
-                        // TODO: close all the pipe ends of the previous iteration in the child.
+                        // TODO: For every process that is not the first one,
+                        //       STDIN connected to the terminal should be
+                        //       replaced (`dup2`) with the pipe's STDIN stream
+                        //       created in the PREVIOUS iteration. Select the
+                        //       correct index to the `pipe_stdin_descriptors`
+                        //       array here for `dup2` to replace the file
+                        //       descriptor 0 of STDIN.
+                        // ?
+
+                        // TODO: You can close the pipe's file descriptors after
+                        //       duplicating them onto the standard streams. You
+                        //       can also close the unnecessary descriptors.
+                        //       Remember only to close descriptors from the
+                        //       PREVIOUS iteration here. Close both things in
+                        //       `pipe_stdin_descriptors` and
+                        //       `pipe_stdout_descriptors` for the correct
+                        //       index.
+                        // ?
+
                     }
 
                     if (pipe_member_index != pipe_member_count - 1) {
-                        // TODO: dup2 pipe stdout end of the current iteration to stdout.
-                        // TODO: close all the pipe ends of the current iteration in the child.
+                        // TODO: For every process that is not the last one,
+                        //       STDOUT connected to the terminal should be
+                        //       replaced (`dup2`) with the pipe's STDOUT stream
+                        //       created in the CURRENT iteration. Select the
+                        //       correct index to the `pipe_stdout_descriptors`
+                        //       array here for `dup2` to replace the file
+                        //       descriptor 1 of STDOUT.
+                        // ?
+
+                        // TODO: You can close the pipe's file descriptors after
+                        //       duplicating them onto the standard streams. You
+                        //       can also close the unnecessary descriptors.
+                        //       Remember only to close descriptors from the
+                        //       CURRENT iteration here. Close both things in
+                        //       `pipe_stdin_descriptors` and
+                        //       `pipe_stdout_descriptors` for the correct
+                        //       index.
+                        // ?
+
                     }
                 }
 
@@ -229,24 +292,49 @@ int main(int argc, char **argv, char **envp)
 
                 if (is_pipe) {
                     if (pipe_member_index > 0) {
-                        // TODO: close all the pipe ends of the previous iteration
-                        //       in the parent if we are not processing the
-                        //       first member of the pipe.
+                        // TODO: In the parent process, you should also close
+                        //       all the pipe descriptors that have already been
+                        //       used. It means, close `pipe_stdin_descriptors`
+                        //       and `pipe_stdout_descriptors` from the previous
+                        //       iteration, but leave the descriptors for the
+                        //       current iteration still open as they will be
+                        //       required by the child process in the next
+                        //       iteration. For example, suppose you do not
+                        //       close a file descriptor in the parent. In that
+                        //       case, you may stall the pipe because some child
+                        //       processes using the `dup`ped streams will never
+                        //       get EOF or equivalent errors for the `read` or
+                        //       `write` system calls to exit (that is how the
+                        //       `yes` program exits from the infinite loop by
+                        //       failing to do a `write` call).
+                        // ?
+
                     }
                 }
             } else {
                 write(2, Fork_Error_Message, sizeof(Fork_Error_Message));
 
-                pids[pipe_member_index] = -1;
                 goto next_input;
             }
         }
 
         if (is_pipe) {
-            // TODO: close the last pipe ends (both stdin and stdout).
+            // TODO: Finish the process from the previous TODO by closing the
+            //       `pipe_stdin_descriptors` and `pipe_stdout_descriptors` for
+            //       the last pipe descriptors. They should be at index
+            //       `pipe_member_count - 2` in `pipe_stdin_descriptors` and
+            //       `pipe_stdout_descriptors` arrays.
+            // ?
+
         }
 
-        // TODO: wait for all the valid child processes in the pids array.
+        // TODO: Wait with the `waitpid` system call for all the child
+        //       processes. You will have to call this function multiple times
+        //       in a loop for all the pipe member indices for every positive
+        //       process ID in the `pids` array (as we may have more than one
+        //       process this time).
+        // ?
+
 next_input:;
     }
 

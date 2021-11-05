@@ -4,69 +4,50 @@ long ish_read(
         unsigned long buffer_size
      )
 {
-    // TODO
-
     return -1;
 }
 
 int ish_chdir(const char *path)
 {
-    // TODO
-
     return -1;
 }
 
 void ish_exit(int status)
 {
-    // TODO
 }
 
 int ish_stat(const char *path, void *stat_result)
 {
-    // TODO
-
     return -1;
 }
 
 int ish_open(const char *path, int flags)
 {
-    // TODO
-
     return -1;
 }
 
 int ish_creat(const char *path, unsigned int mode)
 {
-    // TODO
-
     return -1;
 }
 
 int ish_pipe(int file_descriptors[2])
 {
-    // TODO
-
     return -1;
 }
 
 int ish_dup2(int old_file_descriptor, int new_file_descriptor)
 {
-    // TODO
-
     return -1;
 }
 
 int ish_close(int file_descriptor)
 {
-    // TODO
-
     return -1;
 }
 
 int ish_fork()
 {
-    // TODO
-
     return -1;
 }
 
@@ -76,15 +57,11 @@ int ish_execve(
         char *const environment[]
     )
 {
-    // TODO
-
     return -1;
 }
 
 int ish_waitpid(int pid, int *status, int options)
 {
-    // TODO
-
     return -1;
 }
 
@@ -94,7 +71,5 @@ long ish_write(
         unsigned long buffer_size
      )
 {
-    // TODO
-
     return -1;
 }

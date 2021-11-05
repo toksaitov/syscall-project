@@ -1,5 +1,5 @@
 CFLAGS  += -g -O1 -std=gnu99 -Wno-unused-result -D ISH_USE_STDLIB
-LDFLAGS += #-static
+LDFLAGS += -static
 
 TARGET  = ish
 OBJECTS = ish.o                   \

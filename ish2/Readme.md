@@ -14,7 +14,7 @@ COM 341, Operating Systems
 
 3. Start a new shell instance.
 
-4. Copy the `ish` directory from your machine to the emulated system with `scp`
+4. Copy the `ish2` directory from your machine to the emulated system with `scp`
    or git.
 
 5. Log in into the Debian system through SSH. Use the login that you have
@@ -27,12 +27,13 @@ COM 341, Operating Systems
    In this task, you will have to follow the TODO comments in the main `ish.c`
    file to add support for piping to the second version of our shell.
 
-   Find the first comment in the main `ish.c` file from the top and follow the
+   Find the first comment in the `ish.c` file from the top and follow the
    instructions.
 
-   At the end, compile the program by running `make` and test that you
-   can pipe data from one program to another. Note, that not all other programs
-   will work in a pipe in our shell due to the simplicity of our implementation.
+   In the end, compile the program by running `make` and test that you can pipe
+   data from one program to another. Not all the programs will work in a pipe
+   in our shell due to the simplicity of our implementation. Use the provided
+   examples below to test your implementation.
 
 ### Managing Sources and Executables
 
@@ -74,7 +75,7 @@ COM 341, Operating Systems
         exit 1
         echo $? # in the parent shell
 
-  Note, that we have a toy shell that does not know how to do a lot of things.
+  Note that we have a toy shell that does not know how to do a lot of things.
   You will not be able to edit your input. Autocomplete of commands is not
   available here.
 
@@ -90,4 +91,3 @@ COM 341, Operating Systems
 ### Reading
 
 * [C Books and Guides](https://github.com/auca/com.341/blob/master/Labs/Labs.md#links)
-
