@@ -14,6 +14,6 @@ qemu-system-x86_64                                                     \
     $DISP                                                              \
     -drive if=pflash,file=OVMF_CODE-pure-efi.fd,format=raw,readonly=on \
     -drive if=pflash,file=OVMF_VARS-pure-efi.fd,format=raw,readonly=on \
-    -drive if=virtio,file=debian-11.1.0-amd64-hd.qcow2                 \
+    -drive if=virtio,file=debian-11.5.0-amd64-hd.qcow2                 \
     -nic user,model=virtio-net-pci,hostfwd=tcp::2222-:22               \
     -loadvm last

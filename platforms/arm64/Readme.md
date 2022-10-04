@@ -3,7 +3,23 @@
 
 ## Installing Debian
 
-Follow the steps to install the 64-bit ARM Debian Linux in QEMU.
+Second, create an isolated ARMv8 GNU/Linux environment through QEMU virtualization and emulation system. You should try your best to run QEMU as virtualization software if you have an ARMv8 host environment (e.g., Apple M1, M2 machines). You should run it as an emulator otherwise.
+
+If you have an ARMv8 CPU and you have virtualization technologies enabled in the settings of your firmware (BIOS, UEFI), edit the following files in `platforms/amd64`:
+
+* `start.sh`
+* `start_installation.sh`
+* `start_with_last_state.sh`
+
+In every file, you should replace the word `tcg` on line 11 with
+
+* `whpx` if you are on Windows 10+ and have Hyper-V [enabled](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v)
+* `hvf` if you are on macOS 11.7+ with the `,highmem=off` [option](https://mstone.info/posts/qemu-aarch64-hvf-20210831)
+* `kvm` if you are on GNU/Linux and have the `qemu-kvm` package installed
+
+If you can't enable virtualization on your computer or are using lab machines, leave the `tcg` on line 11 as is in all those files. Be prepared that QEMU will run as an emulator. The emulation process is slow compared to virtualization. The steps below may take a considerable amount of time.
+
+Now with or without virtualization, start following the steps below.
 
 1. Move into the project directory `./syscall-project/`.
 
@@ -21,9 +37,9 @@ Follow the steps to install the 64-bit ARM Debian Linux in QEMU.
         # On Ubuntu Linux
         sudo apt install curl qemu-system
 
-3. Move into the directory `./debian/arm64`.
+3. Move into the directory `./platforms/arm64`.
 
-        cd 'debian/arm64/'
+        cd 'platforms/arm64/'
 
 4. Download the Debian installation disk.
 
@@ -91,7 +107,7 @@ location is in the $PATH environment variable.
 ```bash
 echo $PATH
 
-# If the QEMU directory is not there, from `debian/arm64/` execute
+# If the QEMU directory is not there, from `platforms/arm64/` execute
 export PATH=$PATH:`cd ../../qemu; pwd`
 ```
 

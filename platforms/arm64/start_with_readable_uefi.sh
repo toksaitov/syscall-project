@@ -15,6 +15,5 @@ qemu-system-aarch64                                                       \
     $DISP                                                                 \
     -drive if=pflash,file=QEMU_EFI-pflash.raw,format=raw,readonly=on      \
     -drive if=pflash,file=vars-template-pflash.raw,format=raw,readonly=on \
-    -drive if=virtio,file=debian-11.1.0-arm64-hd.qcow2                    \
-    -nic user,model=virtio-net-pci,hostfwd=tcp::2222-:22                  \
-    -loadvm last
+    -drive if=virtio,file=debian-11.5.0-arm64-hd.qcow2                    \
+    -nic user,model=virtio-net-pci,hostfwd=tcp::2222-:22
