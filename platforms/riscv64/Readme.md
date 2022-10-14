@@ -9,7 +9,7 @@ First, try to install the [Docker Desktop](https://www.docker.com/products/docke
 
 ...and restart it with
 
-        docker start <container ID>
+        docker start -i <container ID>
 
 ...where the `<container ID>` can be found with the `docker ps -a` command.
 
