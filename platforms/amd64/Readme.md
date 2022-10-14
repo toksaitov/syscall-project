@@ -70,8 +70,6 @@ Now with or without virtualization, start following the steps below.
 ![Step 9](https://i.imgur.com/sIFMoJI.png)
 ![Step 10](https://i.imgur.com/PN2lb5G.png)
 ![Step 11](https://i.imgur.com/fHGbL4K.png)
-![Step 12](https://i.imgur.com/FsGD6sr.png)
-![Step 13](https://i.imgur.com/dR0OIR6.png)
 ![Step 14](https://i.imgur.com/D4SFyOc.png)
 ![Step 15](https://i.imgur.com/UicmrIP.png)
 ![Step 16](https://i.imgur.com/W1t7TPA.png)
