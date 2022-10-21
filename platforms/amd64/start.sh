@@ -1,18 +1,22 @@
 #!/usr/bin/env sh
 
-export PATH=$PATH:`cd ../../qemu > /dev/null 2>&1; pwd`
+SCRIPT_LOC=`dirname "$BASH_SOURCE"`
+export PATH=$PATH:`cd "$SCRIPT_LOC/../../qemu" > /dev/null 2>&1; pwd`
 
-DISP="-display gtk"
-case $OSTYPE in darwin*)
-    DISP="-display cocoa"
+case $OSTYPE in
+    darwin*)
+        DISP='-display cocoa';;
+    msys*)
+        DISP='-display gtk';;
+    *)
+        DISP='-nographic -serial mon:stdio -device virtio-serial-pci';;
 esac
 
-qemu-system-x86_64                                                     \
-    -machine type=pc,accel=tcg                                         \
-    -m 1024M                                                           \
-    -smp 1                                                             \
-    $DISP                                                              \
-    -drive if=pflash,file=OVMF_CODE-pure-efi.fd,format=raw,readonly=on \
-    -drive if=pflash,file=OVMF_VARS-pure-efi.fd,format=raw,readonly=on \
-    -drive if=virtio,file=debian-11.5.0-amd64-hd.qcow2                 \
+qemu-system-x86_64                                       \
+    $DISP                                                \
+    -machine type=pc,accel=tcg                           \
+    -m 1024M                                             \
+    -smp 1                                               \
+    -bios OVMF.fd                                        \
+    -drive if=virtio,file=debian-11.5.0-amd64-hd.qcow2   \
     -nic user,model=virtio-net-pci,hostfwd=tcp::2222-:22

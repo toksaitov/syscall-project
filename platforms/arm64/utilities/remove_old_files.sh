@@ -1,9 +1,13 @@
 #!/usr/bin/env sh
 
 DISK_IMAGE='debian-11.5.0-arm64-hd.qcow2'
-EFI_FIRMWARE='QEMU_EFI-pflash.raw'
-EFI_VARS='vars-template-pflash.raw'
+EFI_FIRMWARE_CODE='AAVMF_CODE.fd'
+EFI_FIRMWARE_VARS='AAVMF_VARS.fd'
+LINUX_KERNEL='vmlinuz'
+LINUX_RAMDISK='initrd.gz'
 
-rm -i "$DISK_IMAGE".old   \
-      "$EFI_FIRMWARE".old \
-      "$EFI_VARS".old
+rm -i "$DISK_IMAGE".old        \
+      "$EFI_FIRMWARE_CODE".old \
+      "$EFI_FIRMWARE_VARS".old \
+      "$LINUX_KERNEL".old      \
+      "$LINUX_RAMDISK".old

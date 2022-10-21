@@ -9,5 +9,7 @@ qemu_old/
 *.fd
 *.raw
 *.img
+vmlinuz
 kernel
+initrd.gz
 initrd

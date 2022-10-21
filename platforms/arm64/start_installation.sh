@@ -2,19 +2,26 @@
 
 export PATH=$PATH:`cd ../../qemu > /dev/null 2>&1; pwd`
 
-DISP="-display gtk"
-case $OSTYPE in darwin*)
-    DISP="-display cocoa"
+case $OSTYPE in
+    darwin*)
+        DISP='-display cocoa';;
+    msys*)
+        DISP='-display gtk';;
+    *)
+        DISP='-nographic -serial mon:stdio -device virtio-serial-pci';;
 esac
 
 qemu-system-aarch64                                                                                  \
-    -machine virt                                                                                    \
+    $DISP                                                                                            \
+    -machine type=virt,accel=tcg                                                                     \
     -cpu cortex-a57                                                                                  \
     -m 1024M                                                                                         \
     -smp 1                                                                                           \
-    $DISP                                                                                            \
-    -drive if=pflash,file=QEMU_EFI-pflash.raw,format=raw                                             \
-    -drive if=pflash,file=vars-template-pflash.raw,format=raw                                        \
+    -kernel vmlinuz                                                                                  \
+    -append 'console=ttyS0 DEBIAN_FRONTEND=newt TERM=ansi'                                           \
+    -initrd initrd.gz                                                                                \
+    -drive if=pflash,file=AAVMF_CODE.fd,format=raw                                                   \
+    -drive if=pflash,file=AAVMF_VARS.fd,format=raw                                                   \
     -drive if=virtio,file=debian-11.5.0-arm64-hd.qcow2                                               \
     -drive if=none,file=debian-11.5.0-arm64-netinst.iso,media=cdrom,format=raw,readonly=on,id=cdrom0 \
     -device virtio-scsi-pci,id=scsi0                                                                 \

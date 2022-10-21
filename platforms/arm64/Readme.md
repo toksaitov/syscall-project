@@ -9,7 +9,6 @@ If you have an ARMv8 CPU and you have virtualization technologies enabled in the
 
 * `start.sh`
 * `start_installation.sh`
-* `start_with_last_state.sh`
 
 In every file, you should replace the word `tcg` on line 11 with
 
@@ -47,7 +46,7 @@ Now with or without virtualization, start following the steps below.
 
 5. Download the UEFI image for QEMU.
 
-        ./utilities/download_uefi.sh
+        ./utilities/download_firmware.sh
 
 6. Create a new hard drive image file to store the installed system.
 

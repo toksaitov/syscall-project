@@ -1,9 +1,11 @@
 #!/usr/bin/env sh
 
 DISK_IMAGE='debian-11.5.0-amd64-hd.qcow2'
-EFI_FIRMWARE='OVMF_CODE-pure-efi.fd'
-EFI_VARS='OVMF_VARS-pure-efi.fd'
+EFI_FIRMWARE='OVMF.fd'
+LINUX_KERNEL='vmlinuz'
+LINUX_RAMDISK='initrd.gz'
 
-rm -i "$DISK_IMAGE".old   \
-      "$EFI_FIRMWARE".old \
-      "$EFI_VARS".old
+rm -i "$DISK_IMAGE".old    \
+      "$EFI_FIRMWARE".old  \
+      "$LINUX_KERNEL".old  \
+      "$LINUX_RAMDISK".old

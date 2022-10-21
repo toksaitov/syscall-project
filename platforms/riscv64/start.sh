@@ -1,24 +1,29 @@
 #!/usr/bin/env sh
 
-export PATH=$PATH:`cd ../../qemu > /dev/null 2>&1; pwd`
+SCRIPT_LOC=`dirname "$BASH_SOURCE"`
+export PATH=$PATH:`cd "$SCRIPT_LOC/../../qemu" > /dev/null 2>&1; pwd`
 
-DISP="-display gtk"
-case $OSTYPE in darwin*)
-    DISP="-display cocoa"
+case $OSTYPE in
+    darwin*)
+        DISP='-display cocoa';;
+    msys*)
+        DISP='-display gtk';;
+    *)
+        DISP='-nographic -serial mon:stdio -device virtio-serial-pci';;
 esac
 
 qemu-system-riscv64                                          \
+    $DISP                                                    \
     -machine virt                                            \
     -cpu rv64                                                \
     -m 1024M                                                 \
     -smp 1                                                   \
-    $DISP                                                    \
     -bios fw_jump.elf                                        \
     -kernel uboot.elf                                        \
+    -append "root=LABEL=rootfs console=ttyS0"                \
     -device virtio-blk-device,drive=hd                       \
     -drive file=debian-11.5.0-riscv64-hd.qcow2,if=none,id=hd \
     -device virtio-net-device,netdev=net                     \
     -netdev user,id=net,hostfwd=tcp::2222-:22                \
     -object rng-random,filename=/dev/urandom,id=rng          \
-    -device virtio-rng-device,rng=rng                        \
-    -append "root=LABEL=rootfs console=ttyS0"
+    -device virtio-rng-device,rng=rng
