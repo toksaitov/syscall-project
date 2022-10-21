@@ -5,11 +5,17 @@ export PATH=$PATH:`cd "$SCRIPT_LOC/../../qemu" > /dev/null 2>&1; pwd`
 
 case $OSTYPE in
     darwin*)
-        DISP='-display cocoa';;
+        DISP='-display cocoa'
+        TRM='ansi'
+        ;;
     msys*)
-        DISP='-display gtk';;
+        DISP='-display gtk'
+        TRM='ansi'
+        ;;
     *)
-        DISP='-nographic -serial mon:stdio -device virtio-serial-pci';;
+        DISP='-nographic -serial mon:stdio -device virtio-serial-pci'
+        TRM='vt102'
+        ;;
 esac
 
 qemu-system-x86_64                                                                                   \
@@ -19,7 +25,7 @@ qemu-system-x86_64                                                              
     -smp 1                                                                                           \
     -bios OVMF.fd                                                                                    \
     -kernel vmlinuz                                                                                  \
-    -append 'console=ttyS0 DEBIAN_FRONTEND=newt TERM=ansi'                                           \
+    -append "console=ttyS0 DEBIAN_FRONTEND=newt TERM=$TRM"                                           \
     -initrd initrd.gz                                                                                \
     -drive if=virtio,file=debian-11.5.0-amd64-hd.qcow2                                               \
     -drive if=none,file=debian-11.5.0-amd64-netinst.iso,media=cdrom,format=raw,readonly=on,id=cdrom0 \
