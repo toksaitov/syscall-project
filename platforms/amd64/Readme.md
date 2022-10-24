@@ -10,14 +10,14 @@ If you have an x86-64 CPU and you have virtualization technologies enabled in th
 * `start.sh`
 * `start_installation.sh`
 
-In every file, you should replace the word `tcg` on line 17 with
+In every file, you should replace the word `tcg` on line 17 or 23 with
 
 * `whpx,kernel-irqchip=off` if you are on Windows 10+ and have Hyper-V [enabled](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v)
 * `hax` if you are on Windows 7+ with an Intel CPU and have [Intel HAXM](https://github.com/intel/haxm) hypervisor installed
 * `hvf` if you are on macOS 10.10+
 * `kvm` if you are on GNU/Linux and have the `qemu-kvm` package installed
 
-If you can't enable virtualization on your computer or are using lab machines, leave the `tcg` on line 17 as is in all those files. Be prepared that QEMU will run as an emulator. The emulation process is slow compared to virtualization. The steps below may take a considerable amount of time.
+If you can't enable virtualization on your computer or are using lab machines, leave the `tcg` on line 17 or 23 as is in all those files. Be prepared that QEMU will run as an emulator. The emulation process is slow compared to virtualization. The steps below may take a considerable amount of time.
 
 Now with or without virtualization, start following the steps below.
 

@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 
-export PATH=$PATH:`cd ../../qemu > /dev/null 2>&1; pwd`
+SCRIPT_LOC=`dirname "$BASH_SOURCE"`
+export PATH=$PATH:`cd "$SCRIPT_LOC/../../qemu" > /dev/null 2>&1; pwd`
 
 case $OSTYPE in
     darwin*)

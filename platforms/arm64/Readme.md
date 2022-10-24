@@ -10,13 +10,13 @@ If you have an ARMv8 CPU and you have virtualization technologies enabled in the
 * `start.sh`
 * `start_installation.sh`
 
-In every file, you should replace the word `tcg` on line 11 with
+In every file, you should replace the word `tcg` on line 17 or 23 with
 
 * `whpx` if you are on Windows 10+ and have Hyper-V [enabled](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v)
 * `hvf` if you are on macOS 11.7+ with the `,highmem=off` [option](https://mstone.info/posts/qemu-aarch64-hvf-20210831)
 * `kvm` if you are on GNU/Linux and have the `qemu-kvm` package installed
 
-If you can't enable virtualization on your computer or are using lab machines, leave the `tcg` on line 11 as is in all those files. Be prepared that QEMU will run as an emulator. The emulation process is slow compared to virtualization. The steps below may take a considerable amount of time.
+If you can't enable virtualization on your computer or are using lab machines, leave the `tcg` on line 17 or 23 as is in all those files. Be prepared that QEMU will run as an emulator. The emulation process is slow compared to virtualization. The steps below may take a considerable amount of time.
 
 Now with or without virtualization, start following the steps below.
 
