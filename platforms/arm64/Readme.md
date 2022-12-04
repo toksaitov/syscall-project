@@ -1,4 +1,5 @@
-### COM-341, Operating Systems
+COM-341, Operating Systems
+==========================
 # Project #1, Part #1, Debian for ARMv8 CPUs
 
 ## Installing Debian

@@ -1,4 +1,5 @@
-### COM-341, Operating Systems
+COM-341, Operating Systems
+==========================
 # Project #1, Part #1, GNU/Linux on AMD64
 
 ## Getting Access to a GNU/Linux Machine

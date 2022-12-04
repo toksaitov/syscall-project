@@ -1,4 +1,5 @@
-### COM 341, Operating Systems
+COM 341, Operating Systems
+==========================
 # Project #1
 
 ![ish](http://i.imgur.com/hUwm2PG.gif)
