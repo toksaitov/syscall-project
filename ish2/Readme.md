@@ -4,29 +4,29 @@ COM 341, Operating Systems
 
 ### Initial Steps
 
-1. Move into the directory with the Debian hard drive image.
+1. Navigate to the directory containing the Debian hard drive image. Use the one that you can use in virtualization mode.
 
-        cd 'syscall-project/debian/amd64'
+        cd 'syscall-project/debian/amd64' # or 'syscall-project/debian/arm64' if you are on ARM host
 
-2. Start Debian Linux in QEMU.
+2. Launch Debian Linux in QEMU.
 
         ./start.sh
 
 3. Start a new shell instance.
 
-4. Copy the `ish2` directory from your machine to the emulated system with `scp` or git.
+4. Copy the `ish2` directory from your machine to the emulated system using `scp` or Git.
 
-5. Login into the Debian system through SSH. Use the login that you have specified during the installation process.
+5. Log into the Debian system through SSH using the credentials specified during the installation process.
 
         ssh -p 2222 <login>@127.0.0.1
 
-6. Go into the directory `ish2`.
+6. Change to the directory `ish2`.
 
-   In this task, you will have to follow the TODO comments in the main `ish.c` file to add support for piping to the second version of our shell.
+   In this task, you will need to follow the TODO comments in the main `ish.c` file to add support for piping to the second version of our shell.
 
-   Find the first comment in the `ish.c` file from the top and follow the instructions.
+   Locate the first comment in the `ish.c` file from the top and follow the instructions.
 
-   In the end, compile the program by running `make` and test that you can pipe data from one program to another. Not all the programs will work in a pipe in our shell due to the simplicity of our implementation. Use the provided examples below to test your implementation.
+   Finally, compile the program by running `make` and test that you can pipe data from one program to another. Note that not all programs will work with piping in our shell due to the simplicity of our implementation. Use the provided examples below to test your implementation.
 
 ### Managing Sources and Executables
 
@@ -34,13 +34,13 @@ COM 341, Operating Systems
 
         make
 
-* Test the shell by typing built-in commands such as `cd` and `exit`. Try to start various system programs such as `ls` or `date` with an absolute path to the executable or without it, with parameters or without them. Try redirecting standard input or output streams with `<` and `>` operators. Try to pipe the output of one program into another one.
+* Test the shell by typing built-in commands such as `cd` and `exit`. Try launching various system programs such as `ls` or `date` either with an absolute path to the executable or without it, and with or without parameters. Experiment with redirecting standard input or output streams using the `<` and `>` operators. Try to pipe the output of one program into another.
 
         ./ish
         /bin/ls
         /bin/ls -l /etc
 
-  press `CTRL+C` to exit
+  Press `CTRL+C` to exit.
 
         ./ish
         cd
@@ -64,7 +64,7 @@ COM 341, Operating Systems
         exit 1
         echo $? # in the parent shell
 
-  Note that we have a toy shell that does not know how to do a lot of things. You will not be able to edit your input. Autocomplete of commands is not available here.
+  Note: This is a toy shell and does not support many features. You will not be able to edit your input, and command autocomplete is not available.
 
 * Remove compiled files.
 

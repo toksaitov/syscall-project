@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-QEMU_ARCHIVE='qemu-7.1.0-win64.tar.gz'
+QEMU_ARCHIVE='qemu-8.1.0-win64.tar.gz'
 QEMU_DIRECTORY='qemu'
 URL="https://www.dropbox.com/s/epis3h0mflotgle/$QEMU_ARCHIVE?dl=1/"
 

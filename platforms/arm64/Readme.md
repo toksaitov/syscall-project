@@ -4,40 +4,39 @@ COM-341, Operating Systems
 
 ## Installing Debian
 
-Second, create an isolated ARMv8 GNU/Linux environment through QEMU virtualization and emulation system. You should try your best to run QEMU as virtualization software if you have an ARMv8 host environment (e.g., Apple M1, M2 machines). You should run it as an emulator otherwise.
+First, create an isolated ARMv8 GNU/Linux environment through the QEMU virtualization and emulation system. You should try your best to run QEMU as virtualization software if you have an ARMv8 host environment (e.g., Apple M1, M2 machines). If not, run it as an emulator.
 
-If you have an ARMv8 CPU and you have virtualization technologies enabled in the settings of your firmware (BIOS, UEFI), edit the following files in `platforms/amd64`:
+If you have an ARMv8 CPU and virtualization technologies are enabled in your firmware (BIOS, UEFI) settings, edit the following files in `platforms/amd64`:
 
 * `start.sh`
 * `start_installation.sh`
 
-In every file, you should replace the word `tcg` on line 17 or 23 with
+In each file, replace the word `tcg` on line 17 or 23 with:
 
 * `whpx` if you are on Windows 10+ and have Hyper-V [enabled](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v)
 * `hvf` if you are on macOS 11.7+ with the `,highmem=off` [option](https://mstone.info/posts/qemu-aarch64-hvf-20210831)
 * `kvm` if you are on GNU/Linux and have the `qemu-kvm` package installed
 
-If you can't enable virtualization on your computer or are using lab machines, leave the `tcg` on line 17 or 23 as is in all those files. Be prepared that QEMU will run as an emulator. The emulation process is slow compared to virtualization. The steps below may take a considerable amount of time.
+If you cannot enable virtualization on your computer or are using lab machines, retain `tcg` on line 17 or 23 in all the mentioned files. Note that QEMU will run as an emulator in this case. Emulation is slower than virtualization, so the subsequent steps might take longer than expected.
 
-Now with or without virtualization, start following the steps below.
+Now, with or without virtualization, proceed with the following steps:
 
-1. Move into the project directory `./syscall-project/`.
+1. Navigate to the project directory `./syscall-project/`.
 
         cd 'syscall-project/'
 
-2. Download the hardware emulator QEMU for your operating system.
+2. Download the QEMU hardware emulator suitable for your operating system.
 
         # On Windows (from the Bash shell bundled with Git)
-        ./utilities/download_qemu_win64.sh # or download_qemu_win32.sh on a
-                                           # 32-bit Windows
+        ./utilities/download_qemu_win64.sh
 
         # On macOS with [Homebrew](http://brew.sh)
         brew install qemu
 
         # On Ubuntu Linux
-        sudo apt install curl qemu-system
+        sudo apt install curl qemu-system # Add `qemu-kvm` if virtualization is available
 
-3. Move into the directory `./platforms/arm64`.
+3. Change to the directory `./platforms/arm64`.
 
         cd 'platforms/arm64/'
 
@@ -45,24 +44,19 @@ Now with or without virtualization, start following the steps below.
 
         ./utilities/download_debian.sh
 
-5. Download the UEFI image for QEMU.
+5. Get the UEFI image for QEMU.
 
         ./utilities/download_firmware.sh
 
-6. Create a new hard drive image file to store the installed system.
+6. Create a new hard drive image file to house the installed system.
 
         ./utilities/create_disk_image.sh
 
-7. Start the emulator and the installation process.
+7. Initiate the emulator/virtualizer and begin the installation process.
 
         ./start_installation.sh
 
-8. Switch to the serial console by pressing `CTRL+ALT+2` in QEMU.  Select the
-   `Install` option in the bootloader.  Use `Arrow`-keys or `Backspace` to
-   select items on the screen.  Follow the steps below to install the system.
-   Note that it is recommended to close QEMU after the first successful reboot
-   during the installation process and boot Debian for the first time with the
-   `./start.sh` script.
+8. In QEMU, switch to the serial console using `CTRL+ALT+2`. Choose the `Install` option in the bootloader using the `Arrow` keys or the `Backspace` key. Follow the on-screen instructions to complete the system installation. It's advisable to close QEMU after the first successful reboot during the installation and then boot Debian using the `./start.sh` script.
 
 ![Step 1](https://i.imgur.com/StvLIoc.png)
 ![Step 2](https://i.imgur.com/kqbbdoC.png)
@@ -92,58 +86,50 @@ Now with or without virtualization, start following the steps below.
 
 ## Starting and Stopping the System
 
-If the system is not running, you can start the QEMU emulator and Debian with
-the following command
+To start the QEMU emulator and Debian when the system is not already running, use:
 
 ```bash
 ./start.sh
 ```
 
-If you can not start the emulator on Windows, ensure the QEMU executable
-location is in the $PATH environment variable.
+If you face issues starting the emulator on Windows, ensure the QEMU executable's path is in the $PATH environment variable.
 
 ```bash
 echo $PATH
 
-# If the QEMU directory is not there, from `platforms/arm64/` execute
+# If the QEMU directory isn't listed in $PATH, from `platforms/arm64/`, execute:
 export PATH=$PATH:`cd ../../qemu; pwd`
 ```
 
-To shut down the system and exit from QEMU
+To power off the system and exit QEMU:
 
 ```bash
-# After you have started the system and logged-in with the user name
-# and password specified during the installation process
+# Once you've started the system and logged in using the username and password set during installation:
 sudo systemctl poweroff
 ```
 
 ## Installing Additional Software
 
-1. Start the system and log in.
-
-2. Install the GNU C compiler, the GNU Make build system, the GNU Debugger, and
-   the Git version control system.
+1. Boot up the system and log in.
+2. Install the GNU C compiler, the GNU Make build system, the GNU Debugger, and the Git version control system.
 
         sudo apt-get update
         sudo apt-get install gcc make gdb git
 
-3. Shut down the system.
+3. Power off the system.
 
 ## Fixing Networking Issues [Optional]
 
-1. If you experience connectivity issues in the emulated environment, try
-   disabling the IPv6 support in the kernel.
+1. If you encounter connectivity problems within the emulated environment, consider disabling IPv6 support in the kernel.
 
         sudo nano /etc/default/grub
 
-2. Append `ipv6.disable=1` to the `GRUB_CMDLINE_LINUX` variable and save the
-   file.
-
-3. Update the GRUB boot loader.
+2. Add `ipv6.disable=1` to the `GRUB_CMDLINE_LINUX` variable and save the file.
+3. Update the GRUB bootloader.
 
         sudo update-grub
 
-4. Restart the system.
+4. Reboot the system.
 
         sudo systemctl reboot
 
@@ -153,6 +139,6 @@ sudo systemctl poweroff
 
         ./utilities/compress_disk_image.sh
 
-2. Remove the old uncompressed disk image.
+2. Delete the old uncompressed disk image.
 
         ./utilities/remove_old_files.sh

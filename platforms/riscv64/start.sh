@@ -22,7 +22,7 @@ qemu-system-riscv64                                          \
     -kernel uboot.elf                                        \
     -append "root=LABEL=rootfs console=ttyS0"                \
     -device virtio-blk-device,drive=hd                       \
-    -drive file=debian-11.5.0-riscv64-hd.qcow2,if=none,id=hd \
+    -drive file=debian-12.1.0-riscv64-hd.qcow2,if=none,id=hd \
     -device virtio-net-device,netdev=net                     \
     -netdev user,id=net,hostfwd=tcp::2222-:22                \
     -object rng-random,filename=/dev/urandom,id=rng          \

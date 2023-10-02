@@ -12,13 +12,13 @@ case $OSTYPE in
         DISP='-nographic -serial mon:stdio -device virtio-serial-pci';;
 esac
 
-qemu-system-aarch64                                                  \
-    $DISP                                                            \
-    -machine type=virt,accel=tcg                                     \
-    -cpu cortex-a57                                                  \
-    -m 1024M                                                         \
-    -smp 1                                                           \
-    -drive if=pflash,file=AAVMF_CODE.fd,format=raw,readonly=on       \
-    -drive if=pflash,file=AAVMF_VARS.fd,format=raw                   \
-    -drive if=virtio,file=debian-11.5.0-arm64-hd.qcow2               \
+qemu-system-aarch64                                            \
+    $DISP                                                      \
+    -machine type=virt,accel=tcg                               \
+    -cpu cortex-a57                                            \
+    -m 1024M                                                   \
+    -smp 1                                                     \
+    -drive if=pflash,file=AAVMF_CODE.fd,format=raw,readonly=on \
+    -drive if=pflash,file=AAVMF_VARS.fd,format=raw             \
+    -drive if=virtio,file=debian-12.1.0-arm64-hd.qcow2         \
     -nic user,model=virtio-net-pci,hostfwd=tcp::2222-:22

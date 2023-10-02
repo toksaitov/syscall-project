@@ -1,30 +1,31 @@
+
 COM-341, Operating Systems
 ==========================
-# Project #1, Part #1, Debian for RISC-V 64-bit CPUs
+# Project #1, Part #1: Debian for RISC-V 64-bit CPUs
 
 ## Installing Debian
 
-First, try to install the [Docker Desktop](https://www.docker.com/products/docker-desktop) containerization platform on your computer. The Docker Desktop installation could be pretty challenging on some operating systems. Do your best by following the official documentation on the Docker [Website](https://docs.docker.com/desktop). If you succeed, you will most likely be able to get a RISC-V 64 environment with just the following command:
+First, install the [Docker Desktop](https://www.docker.com/products/docker-desktop) containerization platform on your computer. Installing Docker Desktop can be challenging on certain operating systems. Follow the official documentation on the Docker [Website](https://docs.docker.com/desktop). If successful, you can set up a RISC-V 64 environment using the following command:
 
         docker run --interactive --tty --platform linux/riscv64 ubuntu
 
-...and restart it with
+To restart, use:
 
         docker start -i <container ID>
 
-...where the `<container ID>` can be found with the `docker ps -a` command.
+Here, `<container ID>` can be identified using the `docker ps -a` command.
 
-In case of success, jump straight to `Installing Additional Software` part of the document.
+If successful, proceed to the `Installing Additional Software` section.
 
-In case of failure, you will have to use QEMU and Debian again. Follow the steps below to set up the emulation environment.
+If unsuccessful, you'll need to use QEMU and Debian. Follow the steps below to set up the emulation environment:
 
-1. Move into the project directory `./syscall-project/`.
+1. Navigate to the project directory `./syscall-project/`.
 
         cd 'syscall-project/'
 
-2. Download the hardware emulator QEMU for your operating system.
+2. Download the QEMU hardware emulator for your operating system.
 
-        # On Windows (from the Bash shell bundled with Git)
+        # On Windows (using the Bash shell bundled with Git)
         ./utilities/download_qemu_win64.sh
 
         # On macOS with [Homebrew](http://brew.sh)
@@ -33,42 +34,39 @@ In case of failure, you will have to use QEMU and Debian again. Follow the steps
         # On Ubuntu Linux
         sudo apt install curl qemu-system
 
-3. Move into the directory `./platforms/arm64`.
+3. Navigate to the directory `./platforms/riscv64/`.
 
         cd 'platforms/riscv64/'
 
-4. Download the Debian disk image.
-
-   RISC-V CPU architecture is less populare compared to x86 and Arm. That is why we will not install the system as there are no installers available yet. Instead, we will use a prebuilt image from <https://people.debian.org/~gio/dqib> created by [Giovanni Mascellani](https://wiki.debian.org/GiovanniMascellani).
+4. Download the Debian disk image. Note that the RISC-V CPU architecture is less popular than x86 and Arm, so we won't install the system directly as installers are not available. Instead, use a prebuilt image from <https://people.debian.org/~gio/dqib>, created by [Giovanni Mascellani](https://wiki.debian.org/GiovanniMascellani).
 
         ./utilities/download_debian.sh
 
 ## Starting and Stopping the System
 
-If the system is not running, you can start the QEMU emulator and Debian with the following command
+To start the QEMU emulator and Debian when the system is not running, use:
 
 ```bash
 ./start.sh
 ```
 
-On Windows, switch to the serial console by pressing `CTRL+ALT+2` in QEMU. You can login as a privileged user by using the login `root` with the password `root`.
+For Windows, switch to the serial console in QEMU by pressing `CTRL+ALT+2`. Login as the privileged user using `root` for both username and password.
 
 ![Qemu](https://i.imgur.com/WD8RVzq.png)
 
-If you can not start the emulator on Windows, ensure the path to the QEMU executable is in the `$PATH` environment variable.
+If you encounter issues starting the emulator on Windows, ensure the QEMU executable path is in the `$PATH` environment variable.
 
 ```bash
 echo $PATH
 
-# If the QEMU directory is not there, from `platforms/arm64/` execute
+# If the QEMU directory is missing in $PATH, from `platforms/arm64/`, execute:
 export PATH=$PATH:`cd ../../qemu; pwd`
 ```
 
-To shutdown the system and exit from QEMU
+To shut down the system and exit QEMU:
 
 ```bash
-# After you have started the system and logged-in with the user name
-# and password specified during the installation process
+# After starting the system and logging in with the specified credentials during installation:
 systemctl poweroff
 ```
 
@@ -76,14 +74,14 @@ systemctl poweroff
 
 1. Start the system and log in.
 
-2. Install the GNU C compiler, the GNU Make build system, the GNU Debugger, and the Git version control system with the program to search and open documentation.
+2. Install the GNU C compiler, the GNU Make build system, the GNU Debugger, the Git version control system, and the program to search and view documentation.
 
         apt-get update
         apt-get install gcc make gdb git man
 
 ## Cleanup [Optional]
 
-1. Compress the virtual hard drive image file to save some space on your computer.
+1. Compress the virtual hard drive image file to save space on your computer.
 
         ./utilities/compress_disk_image.sh
 

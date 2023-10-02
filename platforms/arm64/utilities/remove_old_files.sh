@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-DISK_IMAGE='debian-11.5.0-arm64-hd.qcow2'
+DISK_IMAGE='debian-12.1.0-arm64-hd.qcow2'
 EFI_FIRMWARE_CODE='AAVMF_CODE.fd'
 EFI_FIRMWARE_VARS='AAVMF_VARS.fd'
 LINUX_KERNEL='vmlinuz'

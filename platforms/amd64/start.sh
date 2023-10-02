@@ -18,5 +18,5 @@ qemu-system-x86_64                                       \
     -m 1024M                                             \
     -smp 1                                               \
     -bios OVMF.fd                                        \
-    -drive if=virtio,file=debian-11.5.0-amd64-hd.qcow2   \
+    -drive if=virtio,file=debian-12.1.0-amd64-hd.qcow2   \
     -nic user,model=virtio-net-pci,hostfwd=tcp::2222-:22

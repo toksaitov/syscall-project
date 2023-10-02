@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-DISK_IMAGE='debian-11.5.0-riscv64-hd.qcow2'
+DISK_IMAGE='debian-12.1.0-riscv64-hd.qcow2'
 KERNEL='kernel'
 RAM_DISK='initrd'
 BIOS='fw_jump.elf'
