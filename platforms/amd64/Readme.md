@@ -86,6 +86,9 @@ Now, with or without virtualization, proceed with the steps below:
 ![Step 27](https://i.imgur.com/a57Y9zK.png)
 ![Step 28](https://i.imgur.com/3Llnuf8.png)
 ![Step 29](https://i.imgur.com/LxMDXMD.png)
+
+You may not see the screen below and instead see a firmware error complaining that it failed to find a bootloader. In such a case, close the current QEMU instance and restart the emulator with `./start.sh`, click inside of the QEMU window to focus it, and press `ESC` quickly to enter the firmware settings. Manually configure the boot menu by removing all the existing entries and adding a new one pointing to the `grubx64.efi` file in the `EFI/debian` directory on the virtual hard drive. Save the changes and exit the firmware settings. The system should now boot into Debian.
+
 ![Step 30](https://i.imgur.com/kbfGTIO.png)
 
 ## Starting and Stopping the System

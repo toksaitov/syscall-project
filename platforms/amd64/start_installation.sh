@@ -23,10 +23,11 @@ qemu-system-x86_64                                                              
     -machine type=pc,accel=tcg                                                                       \
     -m 1024M                                                                                         \
     -smp 1                                                                                           \
-    -bios OVMF.fd                                                                                    \
     -kernel vmlinuz                                                                                  \
     -append "console=ttyS0 DEBIAN_FRONTEND=newt TERM=$TRM"                                           \
     -initrd initrd.gz                                                                                \
+    -drive if=pflash,file=OVMF_CODE_4M.fd,format=raw                                                 \
+    -drive if=pflash,file=OVMF_VARS_4M.fd,format=raw                                                 \
     -drive if=virtio,file=debian-12.1.0-amd64-hd.qcow2                                               \
     -drive if=none,file=debian-12.1.0-amd64-netinst.iso,media=cdrom,format=raw,readonly=on,id=cdrom0 \
     -device virtio-scsi-pci,id=scsi0                                                                 \

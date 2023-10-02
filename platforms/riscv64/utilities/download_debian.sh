@@ -7,8 +7,7 @@ RAM_DISK='initrd'
 BIOS='fw_jump.elf'
 BOOTLOADER='uboot.elf'
 
-URL="https://www.dropbox.com/s/cr6kx1khy8354ypf6yhfv/$OS_ARCHIVE?dl=1/"
-
+URL="https://www.dropbox.com/scl/fi/b4ib3i2ul2gy9q4rm0hse/$OS_ARCHIVE?rlkey=gb8mozw5479tf7y7ekh1htktq&dl=1"
 curl --location -C - --output "$OS_ARCHIVE" "$URL"
 
 test -e "$DISK_IMAGE" && mv "$DISK_IMAGE" "$DISK_IMAGE".old

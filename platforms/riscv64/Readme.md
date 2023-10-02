@@ -1,4 +1,3 @@
-
 COM-341, Operating Systems
 ==========================
 # Project #1, Part #1: Debian for RISC-V 64-bit CPUs
@@ -7,7 +6,7 @@ COM-341, Operating Systems
 
 First, install the [Docker Desktop](https://www.docker.com/products/docker-desktop) containerization platform on your computer. Installing Docker Desktop can be challenging on certain operating systems. Follow the official documentation on the Docker [Website](https://docs.docker.com/desktop). If successful, you can set up a RISC-V 64 environment using the following command:
 
-        docker run --interactive --tty --platform linux/riscv64 ubuntu
+        docker run --interactive --tty riscv64/debian:rc-buggy
 
 To restart, use:
 

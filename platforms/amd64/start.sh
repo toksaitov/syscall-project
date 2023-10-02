@@ -12,11 +12,12 @@ case $OSTYPE in
         DISP='-nographic -serial mon:stdio -device virtio-serial-pci';;
 esac
 
-qemu-system-x86_64                                       \
-    $DISP                                                \
-    -machine type=pc,accel=tcg                           \
-    -m 1024M                                             \
-    -smp 1                                               \
-    -bios OVMF.fd                                        \
-    -drive if=virtio,file=debian-12.1.0-amd64-hd.qcow2   \
+qemu-system-x86_64                                               \
+    $DISP                                                        \
+    -machine type=pc,accel=tcg                                   \
+    -m 1024M                                                     \
+    -smp 1                                                       \
+    -drive if=pflash,file=OVMF_CODE_4M.fd,format=raw,readonly=on \
+    -drive if=pflash,file=OVMF_VARS_4M.fd,format=raw             \
+    -drive if=virtio,file=debian-12.1.0-amd64-hd.qcow2           \
     -nic user,model=virtio-net-pci,hostfwd=tcp::2222-:22

@@ -5,8 +5,7 @@ EFI_FIRMWARE='OVMF.fd'
 LINUX_KERNEL='vmlinuz'
 LINUX_RAMDISK='initrd.gz'
 
-URL="https://www.dropbox.com/s/ugwooh54h8d47zox9sjty/$FIRMWARE_ARCHIVE?dl=1/"
-
+URL="https://www.dropbox.com/scl/fi/3vjcx3wsxaoncvjgm794k/$FIRMWARE_ARCHIVE?rlkey=pj3l6mvch867gmh2plzioa38b&dl=1"
 curl --location -C - --output "$FIRMWARE_ARCHIVE" "$URL"
 
 test -e "$EFI_FIRMWARE"  && mv "$EFI_FIRMWARE"  "$EFI_FIRMWARE".old
