@@ -41,7 +41,7 @@ The goal of the first task is to prepare execution environments for the second a
 
 ### What to Submit
 
-1. Ensure that during the installation process of the `amd64` and `arm64` versions of Debian, you have specified your first and last name as your full name (e.g., `Dmitrii Toksaitov`). Also ensure you've provided your `auca.space` login as both login and password. The login and password should not be altered in any way (e.g., `toksaitov_d` should be used as is).
+1. Ensure that during the installation process of the `amd64` and `arm64` versions of Debian, you have specified your first and last name as your full name (e.g., `Dmitrii Toksaitov`). Also ensure you've provided your `auca.space` login as both login and password. The login and password should not be altered in any way (e.g., `toksaitov_d` should be used as is). You may get different instructions for a particular semester, but the login and password should always be the same.
 
     Incorrect data specified during the installation process of the `amd64` and `arm64` versions of Debian will result in incorrect files for submission and zero points for this part. Hence, please provide accurate full name, login, and password.
 
