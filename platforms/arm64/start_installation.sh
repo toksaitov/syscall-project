@@ -33,4 +33,4 @@ qemu-system-aarch64                                                             
     -drive if=none,file=debian-12.1.0-arm64-netinst.iso,media=cdrom,format=raw,readonly=on,id=cdrom0 \
     -device virtio-scsi-pci,id=scsi0                                                                 \
     -device scsi-cd,bus=scsi0.0,drive=cdrom0                                                         \
-    -nic user,model=virtio-net-pci,hostfwd=tcp::2223-:22
+    -nic user,model=virtio-net-pci,hostfwd=tcp::2222-:22
