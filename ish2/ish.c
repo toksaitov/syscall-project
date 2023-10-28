@@ -49,7 +49,7 @@ int main(int argc, char **argv, char **envp)
     char input[Max_Input_String_Length + 1];
     input[Max_Input_String_Length] = '\0';
 
-    while (read(0, input, Max_Input_String_Length) >= 0) {
+    while (read(0, input, Max_Input_String_Length) > 0) {
         ish_replace_first_character_in_cstring(
             input, '\n', '\0'
         );
