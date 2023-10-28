@@ -103,7 +103,7 @@ int main(int argc, char **argv, char **envp)
 
         `man 2 read`
     */
-    while (read(0, input, Max_Input_String_Length) >= 0) {
+    while (read(0, input, Max_Input_String_Length) > 0) {
         /*
             Mark the 'new line' character as the end of the C string.
         */
