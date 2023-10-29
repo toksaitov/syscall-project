@@ -103,10 +103,12 @@ int main(int argc, char **argv, char **envp)
 
         `man 2 read`
     */
-    while (read(0, input, Max_Input_String_Length) > 0) {
+    int bytes_read;
+    while ((bytes_read = read(0, input, Max_Input_String_Length)) > 0) {
         /*
             Mark the 'new line' character as the end of the C string.
         */
+        input[bytes_read] = '\0';
         ish_replace_first_character_in_cstring(
             input, '\n', '\0'
         );
