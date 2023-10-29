@@ -16,10 +16,7 @@ unsigned long ish_build_pipe_member_array_from_input(
     }
     pipe_members[pipe_member_index] = 0;
 
-    unsigned long pipe_member_count =
-        pipe_member_index == 0 ?
-            0 : pipe_member_index;
-
+    unsigned long pipe_member_count = pipe_member_index;
     return pipe_member_count;
 }
 
@@ -45,7 +42,7 @@ unsigned long ish_build_argument_array_from_input(
 
     unsigned long argument_count =
         argument_index == 0 ?
-            0 : argument_index;
+            0 : argument_index - 1;
 
     return argument_count;
 }
