@@ -99,7 +99,7 @@ int main(int argc, char **argv, char **envp)
                 //       our shell in a pipe sequence.
                 // ?
 
-                char *directory = argument_count == 0 ?  home : arguments[1];
+                char *directory = argument_count == 0 ? home : arguments[1];
                 if (directory) {
                     chdir(directory);
                 }
