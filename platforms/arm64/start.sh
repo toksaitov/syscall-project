@@ -20,5 +20,5 @@ qemu-system-aarch64                                            \
     -smp 1                                                     \
     -drive if=pflash,file=AAVMF_CODE.fd,format=raw,readonly=on \
     -drive if=pflash,file=AAVMF_VARS.fd,format=raw             \
-    -drive if=virtio,file=debian-12.1.0-arm64-hd.qcow2         \
-    -nic user,model=virtio-net-pci,hostfwd=tcp::2222-:22
+    -drive if=virtio,file=debian-12.7.0-arm64-hd.qcow2         \
+    -nic user,model=virtio-net-pci,hostfwd=tcp::2223-:22

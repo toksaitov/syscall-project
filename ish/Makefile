@@ -1,4 +1,4 @@
-CFLAGS  += -g -O1 -std=gnu99 -Wno-unused-result -D ISH_USE_STDLIB
+CFLAGS  += -g -O1 -std=gnu99 -Wno-unused-result
 LDFLAGS += -static
 
 TARGET  = ish
@@ -14,7 +14,7 @@ $(TARGET) : $(OBJECTS) $(SPECIAL_OBJECTS)
 
 $(OBJECTS) : %.o : %.c ish_common.h
 
-$(SPECIAL_OBJECTS) : %.o : %.c ish_syscalls.amd64.c ish_syscalls.aarch64.c ish_syscalls.riscv64.c ish_common.h
+$(SPECIAL_OBJECTS) : %.o : %.c ish_syscalls.amd64.c ish_syscalls.aarch64.c ish_common.h
 
 .PHONY : clean
 clean :

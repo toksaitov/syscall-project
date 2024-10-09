@@ -19,5 +19,5 @@ qemu-system-x86_64                                               \
     -smp 1                                                       \
     -drive if=pflash,file=OVMF_CODE_4M.fd,format=raw,readonly=on \
     -drive if=pflash,file=OVMF_VARS_4M.fd,format=raw             \
-    -drive if=virtio,file=debian-12.1.0-amd64-hd.qcow2           \
+    -drive if=virtio,file=debian-12.7.0-amd64-hd.qcow2           \
     -nic user,model=virtio-net-pci,hostfwd=tcp::2222-:22

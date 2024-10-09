@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-DEBIAN='debian-12.1.0-arm64-netinst.iso'
-URL="https://www.dropbox.com/scl/fi/s7b15er54wm1ocnb3m3yw/$DEBIAN?rlkey=wglf0352hgxyhxs3p0opgfntm&dl=1"
+DEBIAN='debian-12.7.0-arm64-netinst.iso'
+URL="https://www.dropbox.com/scl/fi/y2w11601r1gcnwz56q5q6/$DEBIAN?rlkey=ncomep6gen1b5u21yatb4i91a&dl=1"
 
 curl --location -C - --output "$DEBIAN" "$URL"

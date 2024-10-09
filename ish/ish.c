@@ -423,7 +423,7 @@ int main(int argc, char **argv, char **envp)
 
                 `man 2 write`
             */
-            write(2, Fork_Error_Message, sizeof(Fork_Error_Message));
+            write(2, Fork_Error_Message, sizeof(Fork_Error_Message) - 1);
         }
     }
 

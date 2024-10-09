@@ -1,15 +1,11 @@
-#ifdef ISH_USE_STDLIB
-    #include <unistd.h>
-    #include <stdlib.h>
-    #include <fcntl.h>
-    #include <sys/stat.h>
-    #include <sys/wait.h>
-    #include <sys/types.h>
-#endif
+#include <stdlib.h>
+#include <fcntl.h>
+#include <sys/stat.h>
+#include <sys/wait.h>
+#include <sys/types.h>
 
 #include "ish_cstring_utilities.h"
 #include "ish_shell_utilities.h"
-#include "ish_syscalls.h"
 
 static const unsigned long Max_Input_String_Length = 255;
 static const unsigned long Max_Pipe_Member_Count   = 255;
@@ -135,13 +131,8 @@ int main(int argc, char **argv, char **envp)
             char candidate[Max_Executable_Path_Length + 1];
             candidate[Max_Executable_Path_Length] = '\0';
 
-            #ifdef ISH_USE_STDLIB
-                struct stat stat_buffer;
-                struct stat *stat_result =
-                    &stat_buffer;
-            #else
-                char stat_result[1024];
-            #endif
+	    struct stat stat_buffer;
+	    struct stat *stat_result = &stat_buffer;
             if (stat(executable, stat_result) != 0) {
                 executable = 0;
                 for (char *cursor = paths; cursor && !executable; ) {
@@ -314,7 +305,7 @@ int main(int argc, char **argv, char **envp)
                     }
                 }
             } else {
-                write(2, Fork_Error_Message, sizeof(Fork_Error_Message));
+                write(2, Fork_Error_Message, sizeof(Fork_Error_Message) - 1);
 
                 goto next_input;
             }

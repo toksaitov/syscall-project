@@ -1,6 +1,7 @@
 qemu/
 qemu_old/
-*.tar.gz
+*.tar
+*.gz
 *.iso
 *.qcow2
 *.old
@@ -9,7 +10,5 @@ qemu_old/
 *.fd
 *.raw
 *.img
-vmlinuz
-kernel
-initrd.gz
-initrd
+initrd*
+vmlinuz*

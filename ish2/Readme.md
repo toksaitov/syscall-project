@@ -18,7 +18,7 @@ COM 341, Operating Systems
 
 5. Log into the Debian system through SSH using the credentials specified during the installation process.
 
-        ssh -p 2222 <login>@127.0.0.1
+        ssh -p 2222 <login>@127.0.0.1 # or ssh -p 2223 <login>@127.0.0.1
 
 6. Change to the directory `ish2`.
 
@@ -58,7 +58,7 @@ COM 341, Operating Systems
         echo hello | cat
         echo hello | cat | less
         echo hello | cat > out1.txt
-        echo hello < out1.txt | cat > out2.txt
+        cat < out1.txt | cat | cat > out2.txt
         cat < out1.txt
         cat < out2.txt
         exit 1
@@ -83,4 +83,4 @@ COM 341, Operating Systems
 
 ### Reading
 
-* [C Books and Guides](https://github.com/auca/com.341/blob/master/Labs/Labs.md#links)
+* [C Books and Guides](https://github.com/auca/com.341/blob/master/Practice_Tasks/Tasks.md)

@@ -1,0 +1,158 @@
+name: Test Part 1
+
+on: [push, workflow_dispatch]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install Utilities
+      run: |
+        # Install utilities
+        sudo apt update
+        sudo apt install -y ruby
+
+    - name: Test if the Correct '.gitignore' File is Present
+      run: |
+        # Check '.gitignore'
+        if [ ! -f '.gitignore' ]
+        then
+          echo -e "The '.gitignore' file is missing."
+          exit 1
+        fi
+        if ! grep --quiet 'tar' '.gitignore'
+        then
+          echo -e 'The '\''.gitignore'\'' file does not have the `tar` file type.'
+          exit 1
+        fi
+        if ! grep --quiet 'iso' '.gitignore'
+        then
+          echo -e 'The '\''.gitignore'\'' file does not have the `iso` file type.'
+          exit 1
+        fi
+        if ! grep --quiet 'qcow2' '.gitignore'
+        then
+          echo -e 'The '\''.gitignore'\'' file does not have the `qcow2` file type.'
+          exit 1
+        fi
+        if ! grep --quiet 'old' '.gitignore'
+        then
+          echo -e 'The '\''.gitignore'\'' file does not have the `old` file type or directory.'
+          exit 1
+        fi
+        if ! grep --quiet 'qemu' '.gitignore'
+        then
+          echo -e 'The '\''.gitignore'\'' file does not have the `qemu` directory.'
+          exit 1
+        fi
+
+    - name: Test if the 'platforms' Directory is Present and Has a Correct Structure
+      run: |
+        # Check 'platforms' and its content
+        if [ ! -d 'platforms' ]
+        then
+          echo -e "The 'platforms' directory is missing."
+          exit 1
+        fi
+        if [ ! -d 'platforms/amd64' ]
+        then
+          echo -e "The 'platforms/amd64' directory is missing."
+          exit 1
+        fi
+        if [ ! -d 'platforms/arm64' ]
+        then
+          echo -e "The 'platforms/arm64' directory is missing."
+          exit 1
+        fi
+
+    - name: Test if the Shadow Files are Present
+      working-directory: ${{github.workspace}}/platforms
+      run: |
+        # Check 'platforms/amd64/shadow' and 'platforms/arm64/shadow'
+        if [ ! -f 'amd64/shadow' ]
+        then
+          echo -e "The 'shadow' file is missing in 'platforms/amd64/'."
+          exit 1
+        fi
+        if [ ! -f 'arm64/shadow' ]
+        then
+          echo -e "The 'shadow' file is missing in 'platforms/arm64/'."
+          exit 1
+        fi
+
+    - name: Test if the Shadow Files are Correct
+      working-directory: ${{github.workspace}}/platforms
+      run: |
+        # Check 'platforms/amd64/shadow' and 'platforms/arm64/shadow'
+        if ! last_line=$(tail -n1 'amd64/shadow') && username=$(echo "$last_line" | cut -d: -f1) && stored_hash=$(echo "$last_line" | cut -d: -f2) && python3 -c "import warnings; warnings.filterwarnings('ignore', category=DeprecationWarning); import crypt; import sys; sys.exit(0 if crypt.crypt('$username', '$stored_hash') == '$stored_hash' else 1)"
+        then
+          echo -e "The 'shadow' file from 'platforms/amd64/' failed the consistency check."
+          exit 1
+        fi
+        if ! last_line=$(tail -n1 'arm64/shadow') && username=$(echo "$last_line" | cut -d: -f1) && stored_hash=$(echo "$last_line" | cut -d: -f2) && python3 -c "import warnings; warnings.filterwarnings('ignore', category=DeprecationWarning); import crypt; import sys; sys.exit(0 if crypt.crypt('$username', '$stored_hash') == '$stored_hash' else 1)"
+        then
+          echo -e "The 'shadow' file from 'platforms/arm64/' failed the consistency check."
+          exit 1
+        fi
+        if [ "$(tail -n1 'amd64/shadow' | cut -d: -f2)" = "$(tail -n1 'arm64/shadow' | cut -d: -f2)" ]; then
+          echo -e "It is unlikely that the 'platforms/amd64/shadow' and 'platforms/arm64/shadow' files will have the same hashes."
+          exit 1
+        fi
+
+    - name: Test if the dmesg Files are Present
+      working-directory: ${{github.workspace}}/platforms
+      run: |
+        # Check 'platforms/amd64/dmesg' and 'platforms/arm64/dmesg'
+        if [ ! -f 'amd64/dmesg' ]
+        then
+          echo -e "The 'dmesg' file is missing in 'platforms/amd64/'."
+          exit 1
+        fi
+        if [ ! -f 'arm64/dmesg' ]
+        then
+          echo -e "The 'dmesg' file is missing in 'platforms/arm64/'."
+          exit 1
+        fi
+
+    - name: Test if the dmesg Files are Correct
+      working-directory: ${{github.workspace}}/platforms
+      run: |
+        # Check 'platforms/amd64/dmesg' and 'platforms/arm64/dmesg'
+        if ! grep --quiet "$(ruby -e 'puts ["44656269616e2031322e32"].pack("H*")')" 'amd64/dmesg'
+        then
+          echo -e 'The '\''platforms/amd64/dmesg'\'' file is not correct. Reason #1.'
+          exit 1
+        fi
+        if ! grep --quiet "$(ruby -e 'puts ["616d643634"].pack("H*")')" 'amd64/dmesg'
+        then
+          echo -e 'The '\''platforms/amd64/dmesg'\'' file is not correct. Reason #2.'
+          exit 1
+        fi
+        if ! grep --quiet "$(ruby -e 'puts ["7669727475616c697a6174696f6e2071656d75"].pack("H*")')" 'amd64/dmesg'
+        then
+          echo -e 'The '\''platforms/amd64/dmesg'\'' file is not correct. Reason #3.'
+          exit 1
+        fi
+        if ! grep --quiet "$(ruby -e 'puts ["44656269616e2031322e32"].pack("H*")')" 'arm64/dmesg'
+        then
+          echo -e 'The '\''platforms/arm64/dmesg'\'' file is not correct. Reason #1.'
+          exit 1
+        fi
+        if ! grep --quiet "$(ruby -e 'puts ["61726d3634"].pack("H*")')" 'arm64/dmesg'
+        then
+          echo -e 'The '\''platforms/arm64/dmesg'\'' file is not correct. Reason #2.'
+          exit 1
+        fi
+        if ! grep --quiet "$(ruby -e 'puts ["7669727475616c697a6174696f6e2071656d75"].pack("H*")')" 'arm64/dmesg'
+        then
+          echo -e 'The '\''platforms/arm64/dmesg'\'' file is not correct. Reason #3.'
+          exit 1
+        fi
+
